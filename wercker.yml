@@ -3,21 +3,20 @@ box:
   ports:
     - "8080"
     
-dev:
-
-  steps:
-    
-    - script:
-      name: run mvn
-      code: |
-        mvn exec:java
+      
 
 build:
-
   steps:
-  
-   - script:
-     name: run mvn
-     code: | 
-      mvn clean test
+    - java/maven:
+      goals: clean test
+      profiles: prod
+      version: 3.5.2
+      
+      build:
+        steps:
+          - java/maven:
+            goals: mvn exec:java
+            settings: my-settings.xml
+            profiles: prod
+      version: 3.5.2
     
