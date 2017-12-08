@@ -9,14 +9,4 @@ build:
   steps:
     - java/maven:
       goals: clean test
-      profiles: prod
       version: 3.5.2
-      
-      build:
-        steps:
-          - java/maven:
-            goals: mvn exec:java
-            settings: my-settings.xml
-            profiles: prod
-      version: 3.5.2
-    
